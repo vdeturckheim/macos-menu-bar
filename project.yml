@@ -1,0 +1,67 @@
+name: YCCountdown
+options:
+  bundleIdPrefix: com.yccountdown
+  deploymentTarget:
+    macOS: "13.0"
+    iOS: "16.0"
+  xcodeVersion: "15.0"
+
+targets:
+  YCCountdown:
+    type: application
+    platform: macOS
+    sources:
+      - path: Sources/Shared
+      - path: Sources/macOS
+    resources:
+      - path: Assets/macOS/Assets.xcassets
+      - path: Assets/Shared/Assets.xcassets
+    info:
+      path: Sources/macOS/Info.plist
+      properties:
+        LSUIElement: true
+    settings:
+      base:
+        INFOPLIST_FILE: Sources/macOS/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.yccountdown.macos
+        MACOSX_DEPLOYMENT_TARGET: "13.0"
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGNING_REQUIRED: "NO"
+
+  YCCountdowniOS:
+    type: application
+    platform: iOS
+    sources:
+      - path: Sources/Shared
+      - path: Sources/iOS
+    resources:
+      - path: Assets/Shared/Assets.xcassets
+    info:
+      path: Sources/iOS/Info.plist
+    settings:
+      base:
+        INFOPLIST_FILE: Sources/iOS/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.yccountdown.ios
+        IPHONEOS_DEPLOYMENT_TARGET: "16.0"
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGNING_REQUIRED: "NO"
+    dependencies:
+      - target: CountdownWidget
+
+  CountdownWidget:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: Sources/Shared
+      - path: Sources/Widget
+    resources:
+      - path: Assets/Shared/Assets.xcassets
+    info:
+      path: Sources/Widget/Info.plist
+    settings:
+      base:
+        INFOPLIST_FILE: Sources/Widget/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.yccountdown.ios.widget
+        IPHONEOS_DEPLOYMENT_TARGET: "16.0"
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGNING_REQUIRED: "NO"

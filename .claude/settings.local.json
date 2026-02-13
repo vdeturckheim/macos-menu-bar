@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(swift --version:*)",
+      "Bash(xcrun --show-sdk-path:*)",
+      "WebSearch"
+    ]
+  }
+}
